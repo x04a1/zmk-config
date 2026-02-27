@@ -1,0 +1,27 @@
+#include "dactyl_manuform.dtsi"
+
+&kscan0 {
+    // for right half: left's row pins become right's column pins
+    col-gpios
+        = <&gpio0 29 GPIO_ACTIVE_HIGH>  // was row 1 on left
+        , <&gpio0 2  GPIO_ACTIVE_HIGH>  // was row 2 on left
+        , <&gpio1 15 GPIO_ACTIVE_HIGH>  // was row 3 on left
+        , <&gpio1 13 GPIO_ACTIVE_HIGH>  // was row 4 on left
+        , <&gpio1 11 GPIO_ACTIVE_HIGH>  // was row 5 on left
+        , <&gpio0 10 GPIO_ACTIVE_HIGH>  // was row 6 on left
+        ;
+    
+    // for right half: left's column pins become right's row pins
+    row-gpios
+        = <&gpio0 17 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // was col 1 on left
+        , <&gpio0 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // was col 2 on left
+        , <&gpio0 22 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // was col 3 on left
+        , <&gpio0 24 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // was col 4 on left
+        , <&gpio1 0  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // was col 5 on left
+        , <&gpio0 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // was col 6 on left
+        ;
+};
+
+&default_transform {
+    col-offset = <6>;
+};

@@ -1,0 +1,63 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+#define LAYER_1 1
+#define LAYER_2 2
+
+/ {
+    behaviors {
+        td_caps_lshift: tap_dance_caps_lshift {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_CAPS_LSHIFT";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LSHFT>, <&kp CAPS>;
+        };
+
+        td_caps_rshift: tap_dance_caps_rshift {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_CAPS_RSHIFT";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp RSHFT>, <&kp CAPS>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <
+                &kp GRAVE       &kp N1          &kp N2          &kp N3          &kp N4          &kp N5              &kp N6          &kp N7          &kp N8          &kp N9          &kp N0          &kp PSCRN
+                &trans          &kp Q           &kp W           &kp E           &kp R           &kp T               &kp Y           &kp U           &kp I           &kp O           &kp P           &kp C_MUTE
+                &td_caps_lshift &kp A           &kp S           &kp D           &kp F           &kp G               &kp H           &kp J           &kp K           &kp L           &kp SEMI        &kp SQT
+                &trans          &kp Z           &kp X           &kp C           &kp V           &kp B               &kp N           &kp M           &kp COMMA       &kp DOT         &kp FSLH        &kp DEL
+                                &kp C_BRI_UP    &kp C_BRI_DN    &kp ESC         &mo LAYER_1     &lt LAYER_2 SPACE   &kp BSPC        &kp LGUI        &kp RALT        &kp C_VOL_DN    &kp C_VOL_UP
+                                                                &kp LCTRL       &kp TAB                             &kp RET         &td_caps_rshift
+            >;
+        };
+
+        layer_1 {
+            bindings = <
+                &trans          &kp F1          &kp F2          &kp F3          &kp F4          &kp F5              &kp F6          &kp F7          &kp F8          &kp F9          &kp F10         &kp F11
+                &trans          &trans          &kp LBKT        &kp RBKT        &trans          &trans              &kp BSLH        &kp EQUAL       &kp LPAR        &kp RPAR        &trans          &kp F12
+                &trans          &kp N1          &kp N2          &kp N3          &kp N4          &kp N5              &kp N6          &kp N7          &kp N8          &kp N9          &kp N0          &trans
+                &trans          &kp EXCL        &kp AT          &kp HASH        &kp DLLR        &kp PRCNT           &kp CARET       &kp AMPS        &kp ASTRK       &kp MINUS       &trans          &trans
+                                &trans          &trans          &trans          &trans          &trans              &trans          &trans          &trans          &trans          &trans
+                                                                &trans          &trans                              &trans          &trans
+            >;
+        };
+
+        layer_2 {
+            bindings = <
+                &bt BT_CLR      &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_SEL 4        &trans          &trans          &trans          &trans          &trans          &trans
+                &trans          &trans          &trans          &trans          &trans          &trans              &trans          &trans          &trans          &trans          &trans          &trans
+                &trans          &trans          &trans          &trans          &trans          &trans              &kp LEFT        &kp DOWN        &kp UP          &kp RIGHT       &trans          &trans
+                &trans          &trans          &trans          &trans          &trans          &trans              &trans          &trans          &trans          &trans          &trans          &trans
+                                &trans          &trans          &trans          &trans          &trans              &trans          &trans          &trans          &trans          &trans
+                                                                &trans          &trans                              &trans          &trans
+            >;
+        };
+    };
+};
